@@ -21,7 +21,7 @@ public class GUIAction {
         this.actionType = actionType;
     }
     
-    public GUIAction(final GUIActionType actionType, Object... actionData) {
+    public GUIAction(final GUIActionType actionType, final Object... actionData) {
         this.actionType = actionType;
         this.actionData = actionData;
     }
@@ -32,8 +32,8 @@ public class GUIAction {
         return new GUIAction(GUIActionType.REDIRECT, redirect);
     }
     
-    public static GUIAction createAddItem(final GUI redirect) {
-        return new GUIAction(GUIActionType.REDIRECT, redirect);
+    public static GUIAction createAddItem(final GUIItem item) {
+        return new GUIAction(GUIActionType.ADD_ITEM, item);
     }
     
     public static GUIAction createMoveItemOverwrite(final int from, final int to) {

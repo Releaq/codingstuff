@@ -24,44 +24,44 @@ public class GUIListener implements Listener {
     
     @SuppressWarnings("incomplete-switch")
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(final InventoryClickEvent e) {
         for (final GUI gui : guis)
-            if (event.getInventory().equals(gui.inv)) {
-                event.setCancelled(true);
-                final GUIItem item = gui.items.get(event.getRawSlot());
-                gui.handleActions(item.globalClickActions, event.getWhoClicked());
-                switch (event.getClick()) {
+            if (e.getInventory().equals(gui.inv)) {
+                e.setCancelled(true);
+                final GUIItem item = gui.items.get(e.getRawSlot());
+                gui.handleActions(item.globalClickActions, e.getWhoClicked());
+                switch (e.getClick()) {
                 case LEFT:
-                    gui.handleActions(item.globalLeftClickActions, event.getWhoClicked());
-                    gui.handleActions(item.regularLeftClickActions, event.getWhoClicked());
+                    gui.handleActions(item.globalLeftClickActions, e.getWhoClicked());
+                    gui.handleActions(item.regularLeftClickActions, e.getWhoClicked());
                     break;
                 case RIGHT:
-                    gui.handleActions(item.globalRightClickActions, event.getWhoClicked());
-                    gui.handleActions(item.regularRightClickActions, event.getWhoClicked());
+                    gui.handleActions(item.globalRightClickActions, e.getWhoClicked());
+                    gui.handleActions(item.regularRightClickActions, e.getWhoClicked());
                     break;
                 case SHIFT_LEFT:
-                    gui.handleActions(item.globalLeftClickActions, event.getWhoClicked());
-                    gui.handleActions(item.shiftLeftClickActions, event.getWhoClicked());
+                    gui.handleActions(item.globalLeftClickActions, e.getWhoClicked());
+                    gui.handleActions(item.shiftLeftClickActions, e.getWhoClicked());
                     break;
                 case SHIFT_RIGHT:
-                    gui.handleActions(item.globalRightClickActions, event.getWhoClicked());
-                    gui.handleActions(item.shiftRightClickActions, event.getWhoClicked());
+                    gui.handleActions(item.globalRightClickActions, e.getWhoClicked());
+                    gui.handleActions(item.shiftRightClickActions, e.getWhoClicked());
                     break;
                 }
             }
     }
     
     @EventHandler
-    public void onInventoryClose(InventoryCloseEvent event) {
+    public void onInventoryClose(final InventoryCloseEvent e) {
         for (final GUI gui : guis)
-            if (event.getInventory().equals(gui.inv))
+            if (e.getInventory().equals(gui.inv))
                 Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                     @Override
                     public void run() {
                         if (gui.preventClose)
-                            event.getPlayer().openInventory(event.getInventory());
-                        if (event.getPlayer().getOpenInventory().getType() == InventoryType.CRAFTING)
-                            gui.handleActions(gui.closeActions, event.getPlayer());
+                            e.getPlayer().openInventory(e.getInventory());
+                        if (e.getPlayer().getOpenInventory().getType() == InventoryType.CRAFTING)
+                            gui.handleActions(gui.closeActions, e.getPlayer());
                     }
                 }, 1);
     }

@@ -73,19 +73,16 @@ public class GUI {
             break;
         case MOVE_ITEM_OVERWRITE:
         {
-            final int from = ((int)action.actionData[0]);
-            this.setItem(((int)action.actionData[1]), this.items.get(from));
-            this.setItem(from, filler);
+            this.setItem(((int)action.actionData[1]), this.items.get(((int)action.actionData[0])));
+            this.setItem(((int)action.actionData[0]), filler);
             break;
         }
         case MOVE_ITEM_SWAP:
         {
             try {
-                final int from = (int)action.actionData[0];
-                final int to = (int)action.actionData[1];
-                final GUIItem tempFrom = this.items.get(from).clone();
-                this.setItem(from, this.items.get(to));
-                this.setItem(to, tempFrom);
+                final GUIItem tempFrom = this.items.get((int)action.actionData[0]).clone();
+                this.setItem((int)action.actionData[0], this.items.get((int)action.actionData[1]));
+                this.setItem((int)action.actionData[1], tempFrom);
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }

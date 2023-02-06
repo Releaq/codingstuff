@@ -69,7 +69,7 @@ public class GUI {
                 ply.closeInventory();
             break;
         case KILL_PLAYER:
-            ((Player)action.actionData[0]).setHealth(0.0D);
+            ((Player)action.actionData[0]).setHealth(0);
             break;
         case MOVE_ITEM_OVERWRITE:
         {
@@ -81,8 +81,8 @@ public class GUI {
         case MOVE_ITEM_SWAP:
         {
             try {
-                final int from = ((int)action.actionData[0]);
-                final int to = ((int)action.actionData[1]);
+                final int from = (int)action.actionData[0];
+                final int to = (int)action.actionData[1];
                 final GUIItem tempFrom = this.items.get(from).clone();
                 this.setItem(from, this.items.get(to));
                 this.setItem(to, tempFrom);
@@ -130,17 +130,17 @@ public class GUI {
             try {
                 final Class<?> Class = ((Class<?>)action.actionData[0]);
                 ((Pointer<Object>)action.actionData[4]).value = Class.getDeclaredMethod((String)action.actionData[1], (Class<?>[])action.actionData[2]).invoke(Class.newInstance(), (Object[])action.actionData[3]);
-            } catch (NoSuchMethodException e) {
+            } catch (final NoSuchMethodException e) {
                 e.printStackTrace();
-            } catch (SecurityException e) {
+            } catch (final SecurityException e) {
                 e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (final IllegalAccessException e) {
                 e.printStackTrace();
-            } catch (IllegalArgumentException e) {
+            } catch (final IllegalArgumentException e) {
                 e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (final InvocationTargetException e) {
                 e.printStackTrace();
-            } catch (InstantiationException e) {
+            } catch (final InstantiationException e) {
                 e.printStackTrace();
             }
             break;

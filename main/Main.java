@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import data.player.PlayerSessionData;
+import managers.gui.GUI;
 
 public class Main extends JavaPlugin {
     

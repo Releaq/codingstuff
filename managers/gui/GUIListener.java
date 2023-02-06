@@ -63,7 +63,7 @@ public class GUIListener implements Listener {
                         if (event.getPlayer().getOpenInventory().getType() == InventoryType.CRAFTING)
                             gui.handleActions(gui.closeActions, event.getPlayer());
                     }
-                }, 1L);
+                }, 1);
     }
     
 }

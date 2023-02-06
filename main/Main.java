@@ -16,6 +16,8 @@ public class Main extends JavaPlugin {
         final File file = new File(this.getDataFolder().toString() + "/PlayerData/");
         if (!file.exists())
             file.mkdir();
+        getServer().getPluginManager().registerEvents(new EventListener(), this);
+        GUI.initGUICreator(this);
     }
     
     @Override
